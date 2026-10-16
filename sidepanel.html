@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Clip5</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f1f1f;
+      --muted: #8a8a8a;
+      --border: #e3e3e3;
+      --button-bg: #f2f2f2;
+      --button-hover: #e6e6e6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #202124;
+        --fg: #e8eaed;
+        --muted: #9aa0a6;
+        --border: #3c4043;
+        --button-bg: #303134;
+        --button-hover: #3c4043;
+      }
+    }
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 12px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+      font-size: 13px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      border-top: 1px solid var(--border);
+    }
+    .num {
+      flex: none;
+      width: 22px;
+      color: var(--muted);
+    }
+    .text {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .text.empty {
+      color: var(--muted);
+    }
+    button {
+      flex: none;
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--button-bg);
+      color: var(--fg);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    button:hover:not(:disabled) {
+      background: var(--button-hover);
+    }
+    button:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    .help {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clip5</h1>
+  <ul id="slots"></ul>
+  <p class="help">
+    保存：Control + Shift + 1〜5<br>
+    貼り付け：入力欄で Control + 1〜5<br>
+    ここで「コピー」→ ページをクリック → Cmd + V でも貼れます
+  </p>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

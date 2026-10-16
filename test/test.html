@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Clip5 動作確認ページ</title>
+  <style>
+    body {
+      max-width: 640px;
+      margin: 24px auto;
+      padding: 0 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+      line-height: 1.7;
+    }
+    section {
+      margin: 20px 0;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    input, textarea, [contenteditable] {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #999;
+      border-radius: 4px;
+      font: inherit;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clip5 動作確認ページ</h1>
+  <p>各欄で「選択して Control + Shift + 1 で保存」「Control + 1 で貼り付け」を試します。</p>
+
+  <section>
+    <h2>1. 普通の入力欄（input）</h2>
+    <input type="text" value="input の見本テキスト">
+  </section>
+
+  <section>
+    <h2>2. 複数行の入力欄（textarea）</h2>
+    <textarea rows="3">textarea の見本テキスト</textarea>
+  </section>
+
+  <section>
+    <h2>3. 編集できる文章（contenteditable）</h2>
+    <div contenteditable="true">contenteditable の見本テキスト</div>
+  </section>
+
+  <section>
+    <h2>4. Shadow DOM の中の入力欄</h2>
+    <shadow-input></shadow-input>
+  </section>
+
+  <section>
+    <h2>5. 入力欄の外</h2>
+    <p>この文章のあたりをクリックしてから Control + 1 を押しても、何も起きません。</p>
+  </section>
+
+  <script>
+    // 入力欄を Shadow DOM の中に入れた部品（一部のサイトと同じ作り）
+    customElements.define("shadow-input", class extends HTMLElement {
+      constructor() {
+        super();
+        const root = this.attachShadow({ mode: "open" });
+        root.innerHTML = `
+          <style>
+            input {
+              box-sizing: border-box;
+              width: 100%;
+              padding: 6px;
+              border: 1px solid #999;
+              border-radius: 4px;
+              font: inherit;
+            }
+          </style>
+          <input type="text" value="Shadow DOM の見本テキスト">
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
